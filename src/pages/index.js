@@ -19,7 +19,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if((category === 'all' && data.length == 0)  || searchVal === ''){
+    if((category === 'all' && data.length == 0)  || (searchVal === '' && data.length < 4)){
     getData(`https://ecommerce-data-5t9j.onrender.com/all`);
     }
 
