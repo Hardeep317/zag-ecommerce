@@ -10,7 +10,6 @@ function cart() {
   const { addToCart, cart, removeFromCart, subt, deleteItem } =
     useContext(AppContext);
 
-  console.log(subt);
 
   return (
     <div>

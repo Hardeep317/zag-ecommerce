@@ -10,39 +10,48 @@ export default function Home() {
   const [isFilter, setIsFilter] = useState(true);
   const [category, setCategory] = useState("all");
   const [data, setData] = useState([]);
-  const [searchVal, setSearchVal] = useState('');
+  const [searchVal, setSearchVal] = useState("");
 
   const getData = (url) => {
     fetch(url)
-    .then((res) => res.json())
-    .then((res) => setData(res))
-  }
+      .then((res) => res.json())
+      .then((res) => setData(res));
+  };
 
   useEffect(() => {
-    if((category === 'all' && data.length == 0)  || (searchVal === '' && data.length < 4)){
-    getData(`https://ecommerce-data-5t9j.onrender.com/all`);
+    if (
+      (category === "all" && data.length == 0) ||
+      (searchVal === "" && data.length < 4)
+    ) {
+      getData(`https://ecommerce-data-5t9j.onrender.com/all`);
     }
-
-    
-  },[data,category])
+  }, [data, category]);
 
   useEffect(() => {
     const handleData = setTimeout(() => {
-      
-      setData(data.filter((item) => item.title.toLowerCase().includes(searchVal.toLowerCase()) || item.category.toLowerCase().includes(searchVal.toLowerCase())))
-    }, 400)
+      setData(
+        data.filter(
+          (item) =>
+            item.title.toLowerCase().includes(searchVal.toLowerCase()) ||
+            item.category.toLowerCase().includes(searchVal.toLowerCase())
+        )
+      );
+    }, 400);
 
-    return () => clearTimeout(handleData)
-  }, [searchVal])
+    return () => clearTimeout(handleData);
+  }, [searchVal]);
 
   return (
     <div>
       <div className="w-11/12 m-auto pt-4">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold">Discover</h2>
-          <div><FiBell className="text-2xl" />
-          <p className="absolute bg-black text-white top-7 right-4 lg:right-[614px] rounded-full w-3 text-center self-center text-[7px] h-3">1</p></div>
-          
+          <div>
+            <FiBell className="text-2xl" />
+            <p className="absolute bg-black text-white top-7 right-4 lg:right-[614px] rounded-full w-3 text-center self-center text-[7px] h-3">
+              1
+            </p>
+          </div>
         </div>
         <div className="flex justify-between items-center mt-5">
           <div className="flex items-center">
@@ -85,8 +94,8 @@ export default function Home() {
               <button
                 className="bg-gray-100 py-2 rounded-lg px-4 text-xs font-semibold"
                 onClick={() => {
-                  setCategory("all")
-                  getData('https://ecommerce-data-5t9j.onrender.com/all')
+                  setCategory("all");
+                  getData("https://ecommerce-data-5t9j.onrender.com/all");
                 }}
               >
                 All
@@ -100,8 +109,8 @@ export default function Home() {
               <button
                 className="bg-gray-100 py-2 rounded-lg px-4 text-xs font-semibold"
                 onClick={() => {
-                  setCategory("men")
-                  getData('https://ecommerce-data-5t9j.onrender.com/mens')
+                  setCategory("men");
+                  getData("https://ecommerce-data-5t9j.onrender.com/mens");
                 }}
               >
                 Men
@@ -115,8 +124,8 @@ export default function Home() {
               <button
                 className="bg-gray-100 py-2 rounded-lg px-4 text-xs font-semibold"
                 onClick={() => {
-                  setCategory("women")
-                  getData('https://ecommerce-data-5t9j.onrender.com/women')
+                  setCategory("women");
+                  getData("https://ecommerce-data-5t9j.onrender.com/women");
                 }}
               >
                 Women
@@ -130,8 +139,8 @@ export default function Home() {
               <button
                 className="bg-gray-100 py-2 rounded-lg px-4 text-xs font-semibold"
                 onClick={() => {
-                  setCategory("kids")
-                  getData('https://ecommerce-data-5t9j.onrender.com/kids')
+                  setCategory("kids");
+                  getData("https://ecommerce-data-5t9j.onrender.com/kids");
                 }}
               >
                 Kids
@@ -143,28 +152,28 @@ export default function Home() {
         <section className="text-gray-600 body-font">
           <div className="container mx-auto mt-2 mb-16">
             <div className="grid gap-x-3 grid-cols-2">
-              {
-                data.map((item,i) => {
-                  return <Link key={i} href={`/products/${item.slug}`}>
-                  <div className="w-full">
-                    <a className="block relative h-36 rounded overflow-hidden">
-                      <img
-                        alt="ecommerce"
-                        className="object-cover object-center w-full h-full block"
-                        src={`${item.img}`}
-                      />
-                      <AiOutlineHeart className="bg-white h-6 w-6 p-1 font-semibold rounded-md absolute top-2 right-1 shadow-md"/>
-                    </a>
-                    <div className="mt-1">
-                      <h2 className="text-gray-900 title-font text-base font-medium">
-                        {item.title}
-                      </h2>
-                      <p className="mt-1 text-xs">INR {item.price}</p>
+              {data.map((item, i) => {
+                return (
+                  <Link key={i} href={`/products/${item.slug}`}>
+                    <div className="w-full">
+                      <a className="block relative h-36 rounded overflow-hidden">
+                        <img
+                          alt="ecommerce"
+                          className="object-cover object-center w-full h-full block"
+                          src={`${item.img}`}
+                        />
+                        <AiOutlineHeart className="bg-white h-6 w-6 p-1 font-semibold rounded-md absolute top-2 right-1 shadow-md" />
+                      </a>
+                      <div className="mt-1">
+                        <h2 className="text-gray-900 title-font text-base font-medium">
+                          {item.title}
+                        </h2>
+                        <p className="mt-1 text-xs">INR {item.price}</p>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-                })
-              }
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
