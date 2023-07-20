@@ -2,7 +2,7 @@
 
 ## [Deloyed Link](https://zag-ecommerce.vercel.app/)
 
-## [Demo Video](https://drive.google.com/file/d/1YVLGOOPqdeAndKfH7uVeO_lgHjexwg-H/view?usp=sharing)
+## [Demo Video](https://drive.google.com/file/d/1bBFBelcwq3hfes_FNLmZqkDx1JtffviU/view?usp=sharing)
 
 
 # To run locally 
